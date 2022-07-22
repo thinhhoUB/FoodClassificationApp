@@ -4,5 +4,5 @@ whitenoise==5.2.0
 gunicorn==20.0.4
 django-on-heroku==1.1.2
 # cpu version of torch and torchvision for heroku to reduce slug size
-torch==1.8.1+cpu
+torch==1.11.0+cpu
 torchvision==0.9.1+cpu
