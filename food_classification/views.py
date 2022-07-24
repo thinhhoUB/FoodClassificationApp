@@ -11,7 +11,7 @@ from django.conf import settings
 model = torchvision.models.resnet18(pretrained=True)
 model_path = os.path.join(settings.STATIC_ROOT, "vietnam_food.pth")
 num_ftrs = model.fc.in_features
-model.fc = nn.Linear(num_ftrs, 6)
+model.fc = nn.Linear(num_ftrs, 10)
 model.load_state_dict(torch.load(model_path))
 model.eval()
 # load mapping of ImageNet index to human-readable label (from staticfiles directory)
