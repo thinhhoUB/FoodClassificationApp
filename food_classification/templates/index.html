@@ -16,6 +16,11 @@ div {text-align: center;}
     {% if predicted_label is not None %}
         <div class="alert alert-primary" role="alert">
             Predicted label: <b>{{ predicted_label }}</b>
+            <iframe title="wikipedia" style="width: 800px;height: 500px;overflow: auto;"
+                    src="https://en.wikipedia.org/w/index.php?title={{predicted_label}}&printable=yes"></iframe>
+
+            <iframe title="googleMaps" style="width: 800px;height: 500px;overflow: auto;"
+                    src="https://maps.google.com/maps?width=600&height=400&hl=en&q={{predicted_label}}&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
         </div>
     {% else %}
         <div class="alert alert-danger" role="alert">

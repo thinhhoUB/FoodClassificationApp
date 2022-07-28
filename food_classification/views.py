@@ -8,6 +8,8 @@ import torchvision
 from torchvision import transforms
 from PIL import Image
 from django.conf import settings
+from googlesearch import search
+
 model = torchvision.models.resnet18(pretrained=True)
 model_path = os.path.join(settings.STATIC_ROOT, "vietnam_food.pth")
 num_ftrs = model.fc.in_features
@@ -47,6 +49,7 @@ from .forms import ImageUploadForm
 def index(request):
     image_uri = None
     predicted_label = None
+    google_result = None
 
     if request.method == 'POST':
         # in case of POST: get the uploaded image from the form and process it
@@ -62,6 +65,7 @@ def index(request):
             # get predicted label with previously implemented PyTorch function
             try:
                 predicted_label = get_prediction(image_bytes)
+                google_result = list(search(predicted_label, num=10, stop=10))
             except RuntimeError as re:
                 print(re)
 
@@ -74,5 +78,6 @@ def index(request):
         'form': form,
         'image_uri': image_uri,
         'predicted_label': predicted_label,
+        'google_result': google_result
     }
     return render(request, 'index.html', context)
