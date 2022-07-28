@@ -1,10 +1,23 @@
 <style>
-h1 {text-align: center;}
-p {text-align: center;}
+h1 {color: black;
+  font-family: Garamond;
+  font-size: 300%;
+  text-align: center;}
+p {color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 130%;
+  text-align: center;}
 div {text-align: center;}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 </style>
-<h1 style="background-color:powderblue;">Vietnamese Food Classification App</h1>
-<p>Glad you are here, foodie. Thank you for choosing Vietnam as your travel destination. Hope my app will guide you and help you know more about our amazing cuisine. </p>
+<h1 style="background-color:lightyellow;">Vietnamese Food Classification App</h1>
+<p>Glad you are here, foodie. Thank you for choosing Vietnam as your travel destination. Hope my app will guide you and help you know more about our amazing cuisine </p>
+<img src="https://i.pinimg.com/originals/f0/19/d3/f019d3ef77077e3c9d1c0624918a28c8.jpg" alt="Girl in a jacket" width="500" height="600">
 
 <form method="post" enctype="multipart/form-data" style="margin-top: 50px; margin-bottom: 30px;">
     {% csrf_token %}
@@ -15,11 +28,13 @@ div {text-align: center;}
 {% if image_uri is not None %}
     {% if predicted_label is not None %}
         <div class="alert alert-primary" role="alert">
-            Predicted label: <b>{{ predicted_label }}</b>
-            <iframe title="wikipedia" style="width: 800px;height: 500px;overflow: auto;"
+            Output: <b>{{ predicted_label }}</b>
+
+
+            <iframe title="wikipedia" style="width: 500px;height: 300px;overflow: auto;"
                     src="https://en.wikipedia.org/w/index.php?title={{predicted_label}}&printable=yes"></iframe>
 
-            <iframe title="googleMaps" style="width: 800px;height: 500px;overflow: auto;"
+            <iframe title="googleMaps" style="width: 500px;height: 300px;overflow: auto;"
                     src="https://maps.google.com/maps?width=600&height=400&hl=en&q={{predicted_label}}&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
         </div>
     {% else %}
